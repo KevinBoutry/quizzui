@@ -33,5 +33,4 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         script: |
               cd ${{secrets.TARGET}} && npm install
-              printf "%s" "${{secrets.STAGING_ENV}}" > "${{secrets.TARGET}}/.env.staging"
               npm run build:staging
