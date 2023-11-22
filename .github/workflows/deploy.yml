@@ -33,4 +33,4 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         script: |
               cd ${{secrets.TARGET}} && npm install
-              npm run build:staging
+              npm run build
