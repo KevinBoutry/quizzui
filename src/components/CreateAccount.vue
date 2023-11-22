@@ -52,7 +52,6 @@ import { reactive } from 'vue';
 
 import { composable } from '@/state/composable';
 import { user } from '@/state/user';
-import router from '@/router/index.ts';
 
 import { UserService } from '@/services/UserService.ts';
 

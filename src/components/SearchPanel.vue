@@ -3,7 +3,7 @@
     <div
       class="result"
       v-for="result in searchResult.data"
-      :key="result"
+      :key="result.id"
       @click="goToQuizz(result.id)"
     >
       <div class="result-title">
@@ -21,19 +21,21 @@
 </template>
 
 <script lang="ts" setup>
+import type { Quizz } from '@/types/Quizz';
+
 import { watch, ref } from 'vue';
 import debounce from 'lodash.debounce';
 import { QuizzService } from '@/services/QuizzService';
-import router from '@/router/index.ts';
+import router from '@/router/index';
 import Rating from 'primevue/rating';
 
 const props = defineProps(['searchText']);
 
 const quizzService: QuizzService = new QuizzService();
 
-const searchResult = ref({ data: [] });
+const searchResult = ref({ data: [] as Quizz[]});
 
-function goToQuizz(id) {
+function goToQuizz(id: number) {
   searchResult.value.data = [];
   router.push({ name: 'quizz', params: { id }, replace: true });
 }

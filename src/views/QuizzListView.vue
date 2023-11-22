@@ -35,7 +35,7 @@ import Dropdown from 'primevue/dropdown';
 import QuizzCard from '@/components/QuizzCard.vue';
 import { theme } from '@/state/theme';
 
-import { QuizzService } from '@/services/QuizzService.ts';
+import { QuizzService } from '@/services/QuizzService';
 
 import { ref, onMounted } from 'vue';
 const { Theme } = theme();

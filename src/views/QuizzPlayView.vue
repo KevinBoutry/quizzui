@@ -25,10 +25,10 @@
       />
     </div>
     <div class="quizz-container-ranking" v-if="quizz.type === 'Ranking'">
-      <div v-for="(category, index) in quizz.categories" :key="category">
+      <div v-for="(category, index) in quizz.categories" :key="category.name">
         <div class="category-container">
           <div class="category-title">
-            {{ category.catName }}
+            {{ category.name }}
           </div>
           <div class="answer" v-for="item in category.items" :key="item">
             <span
@@ -42,7 +42,7 @@
             <span v-else-if="gameEnded" class="answer-not-found">{{
               item
             }}</span>
-            <Skeleton v-else />
+            <SkeletonField v-else />
           </div>
         </div>
       </div>
@@ -54,11 +54,11 @@
       <div
         class="category-container"
         v-for="(category, index) in quizz.categories"
-        :key="category"
+        :key="category.name"
       >
         <div>
           <div class="category-title">
-            {{ category.catName }}
+            {{ category.name }}
           </div>
           <div class="answer" v-for="item in category.items" :key="item">
             <span
@@ -71,7 +71,7 @@
             <span v-else-if="gameEnded" class="answer-not-found">{{
               item
             }}</span>
-            <Skeleton v-else />
+            <SkeletonField v-else />
           </div>
         </div>
       </div>
@@ -80,10 +80,10 @@
   <GameEndPanel
     v-if="endGamePanelStatus && result"
     :score="currentScore"
-    :maxScore="quizz.maxScore"
+    :maxScore="quizz!.maxScore"
     :time="timePlayed"
     :win="win"
-    :quizz="quizz.id"
+    :quizz="quizz!.id"
     :user="userProfile.userid"
     :id="result.id"
   />
@@ -96,7 +96,9 @@ import FuzzySet from 'fuzzyset.js';
 import debounce from 'lodash.debounce';
 
 import GameEndPanel from '@/components/GameEndPanel.vue';
-import { QuizzService } from '@/services/QuizzService.ts';
+import type { FoundItem } from '@/types/FoundItem'
+import type { Quizz } from '@/types/Quizz';
+import { QuizzService } from '@/services/QuizzService';
 import { onMounted, ref, watch } from 'vue';
 
 import { useRoute } from 'vue-router';
@@ -107,7 +109,7 @@ const route = useRoute();
 const { userProfile } = user();
 const { endGamePanelStatus } = composable();
 
-const quizz = ref();
+const quizz = ref<Quizz>();
 const result = ref();
 const pastScore = ref();
 
@@ -122,7 +124,7 @@ const gameEnded = ref(false);
 const win = ref(false);
 const input = ref();
 
-const foundItems = ref([]);
+const foundItems = ref([] as FoundItem[]);
 const itemList = ref([]);
 let fs: any;
 let intervalID: any;
@@ -132,7 +134,7 @@ const quizzService: QuizzService = new QuizzService();
 function startGame() {
   gameStarted.value = true;
   intervalID = setInterval(() => {
-    if (currentScore.value === quizz.value.maxScore) {
+    if (currentScore.value === quizz.value!.maxScore) {
       win.value = true;
       endGame();
     }
@@ -170,36 +172,36 @@ async function endGame() {
     }
     result.value = {
       score: currentScore.value,
-      maxScore: quizz.value.maxScore,
+      maxScore: quizz.value!.maxScore,
       time: timePlayed.value,
-      quizz: quizz.value.id,
+      quizz: quizz.value!.id,
       user: userProfile.value.userid,
     };
   } else {
     result.value = await quizzService.publishScore({
       score: currentScore.value,
-      maxScore: quizz.value.maxScore,
+      maxScore: quizz.value!.maxScore,
       time: timePlayed.value,
-      quizz: quizz.value.id,
+      quizz: quizz.value!.id,
       user: userProfile.value.userid,
     });
   }
 }
 
 async function getQuizz() {
-  quizz.value = await quizzService.getById(route.params.id);
-  quizz.value.categories.forEach((cat) => {
-    foundItems.value.push({ category: cat.catName, items: [] });
+  quizz.value = await quizzService.getById(Number(route.params.id));
+  quizz.value!.categories.forEach((cat) => {
+    foundItems.value.push({ category: cat.name, items: [] });
     itemList.value = itemList.value.concat(cat.items);
   });
   fs = FuzzySet(itemList.value);
   minutes.value =
-    Math.floor(quizz.value.timer / 60) > 0
-      ? Math.floor(quizz.value.timer / 60)
+    Math.floor(quizz.value!.timer / 60) > 0
+      ? Math.floor(quizz.value!.timer / 60)
       : '00';
-  seconds.value = quizz.value.timer % 60;
+  seconds.value = quizz.value!.timer % 60;
   pastScore.value = await quizzService.alreadyPlayed({
-    quizz: quizz.value.id,
+    quizz: quizz.value!.id,
     user: userProfile.value.userid,
   });
 }
@@ -209,7 +211,7 @@ watch(
   debounce(() => {
     const found = fs.get(input.value.trim(), undefined, 0.8);
     if (found) {
-      quizz.value.categories.forEach((cat, index) => {
+      quizz.value!.categories.forEach((cat, index) => {
         const foundCat = cat.items.find(
           (item) => item.toLowerCase() === found[0][1].toLowerCase()
         );

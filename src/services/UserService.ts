@@ -1,7 +1,6 @@
 import { HttpClient } from './HttpClient';
 import { composable } from '@/state/composable';
 import { ref } from 'vue';
-import router from '@/router/index.ts';
 import { user } from '@/state/user';
 
 export class UserService {
@@ -102,7 +101,7 @@ export class UserService {
 
     await this.http.instance
       .post('/user/signup', userCredentials)
-      .then((res) => {
+      .then(() => {
         success.value = true;
         CreateAccountPanelStatus.value = false;
         this.handleLogin({

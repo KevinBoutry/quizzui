@@ -61,11 +61,11 @@ import { v4 as uuid } from 'uuid';
 import { composable } from '@/state/composable';
 
 const category = ref('');
-const currentInput = ref([]);
+const currentInput = ref<string[]>([]);
 
 const { PreviewQuizz } = composable();
 
-function addToCategory(id) {
+function addToCategory(id: string) {
   const index = PreviewQuizz.value.categories.findIndex((cat) => cat.id === id);
   if (currentInput.value[index] != '') {
     PreviewQuizz.value.categories[index].items.push(currentInput.value[index]);
@@ -89,7 +89,7 @@ function deleteCategory(id: string) {
   PreviewQuizz.value.categories.splice(index, 1);
 }
 
-function deleteItem(id, selectedItem) {
+function deleteItem(id: string, selectedItem: string) {
   const indexCat = PreviewQuizz.value.categories.findIndex(
     (cat) => cat.id === id
   );

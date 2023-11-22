@@ -97,7 +97,7 @@ import RankingPanel from '@/components/RankingPanel.vue';
 import { composable } from '@/state/composable';
 import { theme } from '@/state/theme';
 import { quizzType } from '@/state/quizzType';
-import router from '@/router/index.ts';
+import router from '@/router/index';
 import { ref, watch } from 'vue';
 
 const { PreviewQuizz } = composable();
@@ -115,6 +115,7 @@ const imagePreview = async (event: any) => {
 };
 
 function createPreview() {
+  console.log(PreviewQuizz.value)
   router.push('/preview');
 }
 

@@ -66,8 +66,8 @@ import Button from 'primevue/button';
 
 import { composable } from '@/state/composable';
 import { user } from '@/state/user';
-import router from '@/router/index.ts';
-import { QuizzService } from '@/services/QuizzService.ts';
+import router from '@/router/index';
+import { QuizzService } from '@/services/QuizzService';
 import { ref } from 'vue';
 
 const { PreviewQuizz } = composable();
@@ -75,7 +75,7 @@ const { userProfile } = user();
 
 const quizzService: QuizzService = new QuizzService();
 
-const itemList = ref([]);
+const itemList = ref([{}]);
 const quizzCreated = ref(false);
 const quizzLink = ref('');
 
@@ -112,7 +112,7 @@ async function saveQuizz() {
       showTitle: PreviewQuizz.value.showTitle,
       public: PreviewQuizz.value.public,
     })
-    .catch((error) => {
+    .catch(() => {
       console.log('error');
     });
   if (res) {

@@ -57,20 +57,13 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Rating from 'primevue/rating';
 
-import { useRouter } from 'vue-router';
-
 import { onMounted, ref } from 'vue';
-import { composable } from '@/state/composable';
 
-import { UserService } from '@/services/UserService';
 import { QuizzService } from '@/services/QuizzService';
 import { user } from '@/state/user';
 
-const router = useRouter();
-const { isLogged } = composable();
 const { userProfile } = user();
 
-const userService: UserService = new UserService();
 const quizzService: QuizzService = new QuizzService();
 
 const createdQuizz = ref({ data: [] });

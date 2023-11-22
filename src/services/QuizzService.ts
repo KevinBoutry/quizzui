@@ -25,11 +25,11 @@ export class QuizzService {
     return await this.http.instance.get('/quizz', { params: filter });
   };
 
-  public getByTheme = async (theme) => {
+  public getByTheme = async (theme: string) => {
     return await this.http.instance.get(`/quizz/themes/${theme}`);
   };
 
-  public getById = async (id) => {
+  public getById = async (id: number) => {
     return await this.http.instance.get(`/quizz/${id}`);
   };
 
@@ -59,7 +59,7 @@ export class QuizzService {
     );
   };
 
-  public getScoresByUserId = async (id) => {
+  public getScoresByUserId = async (id: number) => {
     return await this.http.instance.get(`/score/id/${id}`);
   };
 }
