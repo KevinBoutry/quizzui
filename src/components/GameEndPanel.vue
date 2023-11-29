@@ -19,7 +19,7 @@ import Rating from 'primevue/rating';
 import Button from 'primevue/button';
 
 import { composable } from '@/state/composable';
-import { QuizzService } from '@/services/QuizzService.ts';
+import { QuizzService } from '@/services/QuizzService';
 
 const { endGamePanelStatus } = composable();
 const quizzService: QuizzService = new QuizzService();

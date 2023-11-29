@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import Rating from 'primevue/rating';
-import router from '@/router/index.ts';
+import router from '@/router/index';
 import { ref, onMounted } from 'vue';
 
 const rating = ref();
@@ -42,7 +42,7 @@ function imageDataUrl(data: any) {
   return URL.createObjectURL(blob);
 }
 
-function goToQuizz(id) {
+function goToQuizz(id: number) {
   router.push(`/quizz/${id}`);
 }
 

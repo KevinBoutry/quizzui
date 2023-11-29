@@ -14,7 +14,7 @@ const PreviewQuizz = ref({
   theme: {} as Theme,
   type: {} as Type,
   time: 0,
-  thumbnail: Blob,
+  thumbnail: undefined as undefined|Blob,
   categories: [] as Category[],
   textColor: 'FFFFFF',
   backgroundColor: '000000',

@@ -19,5 +19,6 @@ export type Quizz = {
     upvote: number,
     rating: number,
     averageScore : string
+    thumbnail: Blob|undefined
 }
 

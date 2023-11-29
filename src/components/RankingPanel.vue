@@ -52,7 +52,7 @@ function createTableInput() {
   }
 }
 
-function addToCategory(id) {
+function addToCategory(id: string) {
   const index = PreviewQuizz.value.categories.findIndex((cat) => cat.id === id);
   if (currentInput.value[index] != '') {
     PreviewQuizz.value.categories[index].items.push(currentInput.value[index]);

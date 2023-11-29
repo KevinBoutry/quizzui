@@ -20,16 +20,19 @@ import Carousel from 'primevue/carousel';
 
 import QuizzCard from './QuizzCard.vue';
 
+import type { Quizz } from '@/types/Quizz';
+import type { CarouselItem } from '@/types/CarouselItem';
+
 import { onMounted, ref } from 'vue';
 import { QuizzService } from '@/services/QuizzService';
 
 const quizzService: QuizzService = new QuizzService();
 
-const carouselItems = ref([]);
+const carouselItems = ref<CarouselItem[]>([]);
 
 onMounted(async () => {
   const quizzes = await quizzService.getByRecent();
-  quizzes.forEach((quizz, index) => {
+  quizzes.forEach((quizz: Quizz, index: number) => {
     carouselItems.value.push({ ...quizz, index });
   });
 });

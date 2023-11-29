@@ -92,7 +92,7 @@
 <script lang="ts" setup>
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import FuzzySet from 'fuzzyset.js';
+import FuzzySet from 'fuzzyset';
 import debounce from 'lodash.debounce';
 
 import GameEndPanel from '@/components/GameEndPanel.vue';
@@ -125,7 +125,7 @@ const win = ref(false);
 const input = ref();
 
 const foundItems = ref([] as FoundItem[]);
-const itemList = ref([]);
+const itemList = ref<any>([]);
 let fs: any;
 let intervalID: any;
 

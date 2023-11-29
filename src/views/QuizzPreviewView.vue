@@ -70,12 +70,14 @@ import router from '@/router/index';
 import { QuizzService } from '@/services/QuizzService';
 import { ref } from 'vue';
 
+import type { Item } from '@/types/Item';
+
 const { PreviewQuizz } = composable();
 const { userProfile } = user();
 
 const quizzService: QuizzService = new QuizzService();
 
-const itemList = ref([{}]);
+const itemList = ref<Item[]>([]);
 const quizzCreated = ref(false);
 const quizzLink = ref('');
 
@@ -97,6 +99,7 @@ function createItemList() {
 
 async function saveQuizz() {
   createItemList();
+  console.log('thumb', typeof PreviewQuizz.value.thumbnail)
   const res = await quizzService
     .createQuizz({
       name: PreviewQuizz.value.name,

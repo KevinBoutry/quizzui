@@ -31,8 +31,7 @@
       </div>
       <div class="inputcontainer">
         <label for="timer">Time :</label>
-        <InputText
-          type="text"
+        <InputNumber
           v-model="PreviewQuizz.time"
           class="input timeinput"
         />
@@ -84,6 +83,7 @@
 
 <script lang="ts" setup>
 import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber'
 import Textarea from 'primevue/textarea';
 import FileUpload from 'primevue/fileupload';
 import Button from 'primevue/button';
@@ -117,6 +117,10 @@ const imagePreview = async (event: any) => {
 function createPreview() {
   console.log(PreviewQuizz.value)
   router.push('/preview');
+}
+
+function getTime(): string{
+  return PreviewQuizz.value.time.toString();
 }
 
 watch(type, () => {

@@ -53,7 +53,7 @@ import { reactive } from 'vue';
 import { composable } from '@/state/composable';
 import { user } from '@/state/user';
 
-import { UserService } from '@/services/UserService.ts';
+import { UserService } from '@/services/UserService';
 
 const { CreateAccountPanelStatus } = composable();
 const { errorMessage } = user();

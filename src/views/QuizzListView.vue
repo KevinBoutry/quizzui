@@ -32,6 +32,7 @@
 <script lang="ts" setup>
 import Dropdown from 'primevue/dropdown';
 
+import type { Quizz } from '@/types/Quizz';
 import QuizzCard from '@/components/QuizzCard.vue';
 import { theme } from '@/state/theme';
 
@@ -43,7 +44,7 @@ const { Theme } = theme();
 const quizzService: QuizzService = new QuizzService();
 
 const selectedTheme = ref();
-const quizzList = ref({ maxPage: 1, data: [] });
+const quizzList = ref({ maxPage: 1, data: [] as Quizz[]});
 const pageNumber = ref(1);
 
 async function loadQuizzList() {
@@ -52,6 +53,7 @@ async function loadQuizzList() {
     pageSize: 12,
     theme: selectedTheme.value.name,
   });
+  console.log('data', quizzList.value.data)
 }
 
 async function goToNextPage() {

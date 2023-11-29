@@ -30,7 +30,7 @@
 import { composable } from '@/state/composable';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
-import { UserService } from '@/services/UserService.ts';
+import { UserService } from '@/services/UserService';
 import { reactive } from 'vue';
 
 const { LoginPanelStatus } = composable();

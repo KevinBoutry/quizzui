@@ -1,4 +1,9 @@
+import type { AlreadyPlayed } from '@/types/AlreadyPlayed';
+import type { CreateQuizz } from '@/types/CreateQuizz';
 import { HttpClient } from '@/services/HttpClient';
+import type { Score } from '@/types/Score';
+import type { UpdateScore } from '@/types/UpdateScore';
+import type { UpdateStars } from '@/types/UpdateStars';
 
 export class QuizzService {
   private http: HttpClient;
@@ -7,7 +12,7 @@ export class QuizzService {
     this.http = new HttpClient();
   }
 
-  public createQuizz = async (data) => {
+  public createQuizz = async (data: CreateQuizz) => {
     const formData = new FormData();
     if (data.thumbnail) {
       formData.append('image', data.thumbnail, 'thumbnail.png');
@@ -21,7 +26,7 @@ export class QuizzService {
     return quizz;
   };
 
-  public getAll = async (filter) => {
+  public getAll = async (filter: any) => {
     return await this.http.instance.get('/quizz', { params: filter });
   };
 
@@ -41,19 +46,22 @@ export class QuizzService {
     return await this.http.instance.get('/quizz/trending');
   };
 
-  public publishScore = async (data) => {
+  public publishScore = async (data: Score) => {
+    console.log(data)
     return await this.http.instance.post('score/publish', data);
   };
 
-  public updateScore = async (data) => {
+  public updateScore = async (data: UpdateScore) => {
+    console.log(data)
     return await this.http.instance.put('score/update', data);
   };
 
-  public updateStars = async (data) => {
+  public updateStars = async (data: UpdateStars) => {
     return await this.http.instance.put('score/stars', data);
   };
 
-  public alreadyPlayed = async (data) => {
+  public alreadyPlayed = async (data: AlreadyPlayed) => {
+  console.log(data)
     return await this.http.instance.get(
       `score/played/${data.quizz}/${data.user}`
     );

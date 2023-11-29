@@ -33,12 +33,12 @@ const props = defineProps(['item', 'category', 'default']);
 
 const emit = defineEmits(['updateValue', 'deleteItem']);
 
-function findDefaultValue(c: string, i: string) {
+function findDefaultValue(c: string, i: number) {
   const indexCat = PreviewQuizz.value.categories.findIndex(
     (cat) => cat.id === c
   );
   const indexItem = PreviewQuizz.value.categories[indexCat].items.findIndex(
-    (item) => item.id === i
+    (item: any) => item.id === i
   );
   currentValue.value =
     PreviewQuizz.value.categories[indexCat].items[indexItem].name;
