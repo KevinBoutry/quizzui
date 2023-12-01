@@ -21,7 +21,7 @@ export class HttpClient {
   public readonly instance: AxiosInstance;
 
   public constructor() {
-    const baseURL = 'http://localhost:3000';
+    const baseURL = import.meta.env.VITE_BASE_URL;
     this.instance = axios.create({
       baseURL,
     });
