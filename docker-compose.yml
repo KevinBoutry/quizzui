@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  my_frontend:
+    container_name: my_frontend
+    image: node:lts
+    working_dir: /home/github/Front
+    entrypoint: ["npm", "run", "preview", "--", "--host"]
+    ports:
+      - 5173:4173
+    volumes:
+      - .:/home/github/Front
+    tty: true
