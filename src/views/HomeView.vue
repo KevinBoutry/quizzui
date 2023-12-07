@@ -1,9 +1,8 @@
 <template>
   <div class="presentation">
-    <h1>Bienvenue sur NomDuSite</h1>
+    <h1>Welcome to Quizz</h1>
     <p>
-      Ici vous pouvez jouer à des quizz mais aussi en créer et les partager avec
-      vos amis
+      Play, create and share Quizz with your friends
     </p>
   </div>
   <LastAddedQuizz />
