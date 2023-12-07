@@ -10,11 +10,10 @@
         <RouterLink to="/list"> QUIZZ </RouterLink>
       </div>
       <div v-if="isLogged">
-        <RouterLink to="create"> CREER </RouterLink>
+        <RouterLink to="create"> CREATE </RouterLink>
       </div>
     </div>
-    <span class="p-input-icon-left">
-      <i class="pi pi-search" />
+    <span>
       <InputText v-model="search" placeholder="Search" />
     </span>
     <div class="right-homepanel">
@@ -102,6 +101,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 
   .left-homepanel {
     display: flex;
