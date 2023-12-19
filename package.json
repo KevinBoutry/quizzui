@@ -20,7 +20,7 @@
     "lodash.debounce": "^4.0.8",
     "pinia": "^2.1.7",
     "primeicons": "^6.0.1",
-    "primevue": "^3.28.0",
+    "primevue": "^3.44.0",
     "uuid": "^9.0.0",
     "vee-validate": "^4.8.6",
     "vue": "^3.3.4",

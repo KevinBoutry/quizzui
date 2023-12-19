@@ -63,6 +63,7 @@
 
 <script lang="ts" setup>
 import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
 
 import { composable } from '@/state/composable';
 import { user } from '@/state/user';
@@ -242,9 +243,9 @@ async function saveQuizz() {
   }
 
   .bottom-buttons {
-    position: absolute;
+    position: relative;
     width: 100%;
-    bottom: 5%;
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-around;
   }
