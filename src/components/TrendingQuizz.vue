@@ -2,6 +2,7 @@
   <div class="container">
     <h1 class="title">Most Played</h1>
     <Carousel
+      class="carousel-container"
       :value="carouselItems"
       :numVisible="3"
       :numScroll="1"
@@ -43,10 +44,18 @@ onMounted(async () => {
   height: 35vh;
   width: 100vw;
   background-color: #ebcfb2;
+  color:  #424b54;;
   overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   .title {
     text-align: center;
+  }
+
+  .carousel-container{
+    width: 95%;
   }
   .quizz-box {
     width: 20vw;
@@ -74,4 +83,29 @@ onMounted(async () => {
     }
   }
 }
+:deep(.p-carousel .p-carousel-indicators){
+  visibility: hidden;
+}
+
+:deep(.p-carousel-next){
+  width: 4rem;
+  height: 4rem;
+}
+
+:deep(.p-carousel-prev){
+  width: 4rem;
+  height: 4rem;
+}
+
+
+:deep(.p-carousel-next .p-icon){
+  width: 3rem;
+  height: 3rem;
+}
+
+:deep(.p-carousel-prev .p-icon){
+  width: 3rem;
+  height: 3rem;
+}
+
 </style>

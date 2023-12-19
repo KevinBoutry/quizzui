@@ -77,7 +77,9 @@
         </div>
       </div>
     </div>
-    <Button label="PREVIEW" class="preview-button" @click="createPreview" />
+    <div class="bottom-button">
+      <Button label="PREVIEW" class="preview-button" @click="createPreview" />
+    </div>
   </div>
 </template>
 
@@ -135,10 +137,12 @@ watch(type, () => {
   width: 100vw;
   background-color: #424b54;
   color: white;
-  overflow-y: scroll;
+  overflow: hidden;
 
   .form {
     padding: 10px;
+    max-height: 80vh;
+    overflow-y: scroll;
 
     .inputcontainer {
       margin-top: 5px;
@@ -156,6 +160,7 @@ watch(type, () => {
       .input {
         position: relative;
         width: 20vw;
+
       }
 
       .timeinput {
@@ -199,13 +204,20 @@ watch(type, () => {
     }
   }
 
-  .preview-button {
-    position: sticky;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 30px;
-    width: 10vw;
-    height: 5vh;
+  .bottom-button{
+    position: absolute;
+    overflow: hidden;
+    bottom: 0px;
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .preview-button {
+      width: 10vw;
+      height: 5vh;
+    }
   }
 
   .category-panel {

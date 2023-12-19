@@ -10,4 +10,10 @@ import HeaderPanel from '@/components/HeaderPanel.vue';
 import FooterPanel from '@/components/FooterPanel.vue';
 </script>
 
-<style scoped></style>
+<style>
+
+body{
+  margin: 0px;
+}
+
+</style>

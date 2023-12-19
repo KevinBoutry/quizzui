@@ -116,6 +116,7 @@ function deleteItem(id: string, selectedItem: string) {
     padding-bottom: 10px;
 
     .category-title {
+      position: relative;
       color: black;
       font-size: 1.3rem;
       text-align: center;
