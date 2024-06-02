@@ -63,6 +63,7 @@ onMounted(() => {
   margin: 10px;
   font-size: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
@@ -73,9 +74,7 @@ onMounted(() => {
 
   .quizz-rating {
     position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 20px;
   }
 }
 </style>

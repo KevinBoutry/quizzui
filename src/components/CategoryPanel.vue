@@ -101,6 +101,26 @@ function deleteItem(id: string, selectedItem: string) {
 </script>
 
 <style lang="scss" scoped>
+
+.inputcontainer {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-right: 10px;
+    position: relative;
+    left: 0px;
+    width: 120px;
+    text-align: right;
+  }
+
+  .input {
+    position: relative;
+    width: 20vw;
+
+  }
+}
 .categories-container {
   display: flex;
   justify-content: space-around;
