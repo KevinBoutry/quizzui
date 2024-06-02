@@ -22,6 +22,7 @@
       />
     </div>
     <button @click="validate">LOGIN</button>
+    <GoogleLogin :callback="callback"/>
   </div>
   <div class="outside" @click="closePanel"></div>
 </template>
@@ -34,6 +35,12 @@ import { UserService } from '@/services/UserService';
 import { reactive } from 'vue';
 
 const { LoginPanelStatus } = composable();
+
+const callback = (response:any) => {
+  // This callback will be triggered when the user selects or login to
+  // his Google account from the popup
+  console.log("Handle the response", response)
+}
 
 const closePanel = () => {
   LoginPanelStatus.value = false;

@@ -7,10 +7,10 @@
         </RouterLink>
       </div>
       <div>
-        <RouterLink to="/list"> QUIZZ </RouterLink>
+        <RouterLink class="button" to="/list" > QUIZZ </RouterLink>
       </div>
       <div v-if="isLogged">
-        <RouterLink to="create"> CREATE </RouterLink>
+        <RouterLink class="button" to="create" > CREATE </RouterLink>
       </div>
     </div>
     <span>
@@ -102,7 +102,7 @@ onMounted(async () => {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-
+  
 
   .left-homepanel {
     display: flex;
@@ -118,6 +118,10 @@ onMounted(async () => {
     }
     .button {
       cursor: pointer;
+    }
+    .button:link{
+      text-decoration: none;
+      color: black;
     }
   }
 }

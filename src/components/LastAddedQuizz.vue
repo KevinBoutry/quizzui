@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Most Recent</h1>
+    <span class="title">Most Recent</span>
     <Carousel
       class="carousel-container"
       :value="carouselItems"
@@ -51,6 +51,8 @@ onMounted(async () => {
 
   .title {
     text-align: center;
+    font-size: 2rem;
+    margin-top: 15px;
   }
 
   .carousel-container{

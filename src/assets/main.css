@@ -1,6 +1,6 @@
-@import './base.css';
+/* @import './base.css';
 
-#app {
+/* #app {
   margin: 0 auto;
   font-weight: normal;
   height: 100vh;
@@ -9,14 +9,14 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(69, 77, 69);
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(180, 100%, 100%, 0.942);
   }
 }
 
-
+ */

@@ -47,36 +47,37 @@
       </div>
       <div class="inputcontainer">
         <label for="public">Public :</label>
-        <Checkbox v-model="PreviewQuizz.public" :binary="true" />
+        <InputSwitch v-model="PreviewQuizz.public" :binary="true" />
       </div>
+      <div class="preview">
+        <div
+          class="thumbnail-preview"
+          :style="`color: #${PreviewQuizz.textColor}; background-color: #${PreviewQuizz.backgroundColor}; background-image : url('${thumbnail}');`"
+        >
+          <div class="preview-text" v-if="PreviewQuizz.showTitle">
+            {{ PreviewQuizz.name }}
+          </div>
+        </div>
+        <div class="preview-input-container">
+          <div class="preview-input">
+              <span class="text-color-text">Text color</span>
+              <ColorPicker :pt="{ input: {style: 'width: 70px; height: 20px; padding: 0'} }" v-model="PreviewQuizz.textColor" />
+          </div>
+          <div class="preview-input">
+            <span class="text-color-text">Background color</span>
+            <ColorPicker :pt="{ input: {style: 'width: 120px; height: 20px; padding: 0'} }" v-model="PreviewQuizz.backgroundColor" />
+          </div>
+          <div class="preview-input">
+            <span class="text-color-text">Show Title</span>
+            <InputSwitch  v-model="PreviewQuizz.showTitle" :binary="true" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="middle-part">
       <CategoryPanel v-if="PreviewQuizz.type.name === 'List with categories'" />
       <RankingPanel v-if="PreviewQuizz.type.name === 'Ranking'" />
-    </div>
-    <div class="preview">
-      <h1 class="preview-title">Thumbnail Preview</h1>
-      <div
-        class="thumbnail-preview"
-        :style="`color: #${PreviewQuizz.textColor}; background-color: #${PreviewQuizz.backgroundColor}; background-image : url('${thumbnail}');`"
-      >
-        <div class="preview-text" v-if="PreviewQuizz.showTitle">
-          {{ PreviewQuizz.name }}
-        </div>
-      </div>
-      <div class="preview-input-container">
-        <div class="preview-input">
-          <span class="text-color-text">Text color :</span>
-          <ColorPicker v-model="PreviewQuizz.textColor" />
-        </div>
-        <div>
-          <span class="text-color-text">Background color :</span>
-          <ColorPicker v-model="PreviewQuizz.backgroundColor" />
-        </div>
-        <div>
-          <span class="text-color-text">Show Title :</span>
-          <Checkbox v-model="PreviewQuizz.showTitle" :binary="true" />
-        </div>
-      </div>
-    </div>
+    </div>   
     <div class="bottom-button">
       <Button label="PREVIEW" class="preview-button" @click="createPreview" />
     </div>
@@ -92,6 +93,7 @@ import Button from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
 import ColorPicker from 'primevue/colorpicker';
 import Checkbox from 'primevue/checkbox';
+import InputSwitch from 'primevue/inputswitch';
 
 import CategoryPanel from '@/components/CategoryPanel.vue';
 import RankingPanel from '@/components/RankingPanel.vue';
@@ -141,8 +143,7 @@ watch(type, () => {
 
   .form {
     padding: 10px;
-    max-height: 80vh;
-    overflow-y: scroll;
+    max-height: 40vh;
 
     .inputcontainer {
       margin-top: 5px;
@@ -167,41 +168,58 @@ watch(type, () => {
         width: 80px;
       }
     }
+    .preview {
+      position: absolute;
+      right: 150px;
+      top: 15px;
+  
+      .thumbnail-preview {
+        width: 400px;
+        height: 250px;
+        background-color: black;
+        text-align: center;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-bottom: 5px;
+  
+        .preview-text {
+          text-shadow: 2px 2px 2px black;
+        }
+      }
+      .preview-input-container {
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .preview-input{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+  
+        .text-color-text {
+          margin: 5px;
+        }
+      }
+    }
   }
-  .preview {
-    position: absolute;
-    right: 150px;
-    top: 15px;
+  .middle-part{
+    height: 40vh;
+    width: 100vw;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
-    .preview-title {
-      text-align: center;
-    }
-
-    .thumbnail-preview {
-      width: 400px;
-      height: 250px;
-      background-color: black;
-      text-align: center;
-      font-size: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 4px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-
-      .preview-text {
-        text-shadow: 2px 2px 2px black;
-      }
-    }
-    .preview-input-container {
-      text-align: center;
-
-      .text-color-text {
-        margin: 5px;
-      }
-    }
   }
 
   .bottom-button{
